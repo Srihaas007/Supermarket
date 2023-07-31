@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Signup</title>
+    <link rel="stylesheet" href="home.css">
+    <script src="navbar.js"></script>
+</head>
+<body>
+    <nav id="navbar">
+        <div id="logo">  <a href="home.html"><img src="Logo.png" alt="logo"></div></a>
+        <ul id="nav-links">
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="cart">Cart</a></li>
+            <li><a href="account">Account</a></li>
+            <li><a href="Login.html">Log in</a></li>
+            <li><a href="signup.html">Sign up</a></li>
+        </ul>
+        <div id="Menu" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Login</h2>
+        <form id="login-form-fields">
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="password" placeholder="Password">
+            <button type="submit" id="login-btn">Login</button>
+        </form>
+        <div class="forgot-password" id="forgot-password-link">Forgot Password <a href="#">Click here</a>.</div>
+        <div class="signup-link">Not registered yet? <a href="signup.html">Sign Up here</a>.</div>
+    </div>
+
+    
+    <!-- Add your scripts here -->
+    <script type="module">
+        // Import the functions you need from the SDKs you want to use
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+    
+        const auth = getAuth();
+    
+        const loginForm = document.getElementById('login-form-fields');
+    
+        loginForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // prevent the default form submission
+    
+            // get the values of form fields
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+    
+            // validate the form fields and handle any errors
+            if (!email || !password) {
+                alert('Please fill out all fields');
+                return;
+            }
+    
+            // sign in the user with Firebase Authentication
+            signInWithEmailAndPassword(auth, email, password)
+                .then(() => {
+                    alert('User logged in successfully!');
+                    window.location.href = "UserAfterLogin.html";  // Redirect the user to UserAfterLogin.html
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert(`Error: ${errorMessage}`);
+                });
+        });
+    
+        // forgot password handling
+        import { sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js"
+    
+        const forgotPasswordLink = document.querySelector('.forgot-password a');
+        forgotPasswordLink.addEventListener('click', (event) => {
+            event.preventDefault();
+            handleForgotPassword();
+        });
+    
+        function handleForgotPassword() {
+            const email = prompt('Enter your email address to reset your password:');
+            if (!email) {
+                return;
+            }
+    
+            sendPasswordResetEmail(auth, email)
+                .then(() => {
+                    alert('Password reset email sent successfully!');
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert(`Error: ${errorMessage}`);
+                });
+        }
+    </script>
+    
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="home.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+            <div id="logo"><a href="home.html"><img src="Logo.png" alt="logo"></div></a>
+            <ul id="nav-links">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="cart">Cart</a></li>
+                <li><a href="account">Account</a></li>
+                <li><a href="Login.html">Log in</a></li>
+                <li><a href="signup.html">Sign up</a></li>
+            </ul>
+            <div id="Menu" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
+    </header>
+
+    <div id="slider">
+        <a href="page1.html" class="slide"><img src="rice.jpeg" alt="Image 1"></a>
+        <a href="page2.html" class="slide"><img src="chilli powder.jpeg" alt="Image 2"></a>
+        <a href="page3.html" class="slide"><img src="ground nut oil.jpeg" alt="Image 3"></a>
+        <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+        <button class="next" onclick="plusSlides(1)">&#10095;</button>
+    </div>
+
+    <script src="slider.js"></script>
+    <script src="navbar.js"></script>
+</body>
+</html>
